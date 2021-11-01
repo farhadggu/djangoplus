@@ -1,0 +1,39 @@
+{% extends 'shared/base.html' %}
+{% block title %}سبد خرید{% endblock title %}
+{% block content %}
+
+    <div class="container">
+    
+        <div class="card">
+        
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col"></th>
+                    <th scope="col">دوره</th>
+                    <th scope="col">تصویر دوره</th>
+                    <th scope="col">قیمت</th>
+                    <th scope="col">حذف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in shopcart %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{item.course.title}}</td>
+                        <td><img src="{{item.course.image.url}}" width="150px" height="100px" /></td>
+                        <td>{{item.course.total_price}}</td>
+                        <td><a href="{% url 'cart:delete-shop-cart' item.id %}" style="color:red"><strong>X</strong></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    
+    </div>
+    <div class="container mt-4">
+        <a href="{% url 'order:order-course' %}" class="btn btn-fill-primary d-block"> ثبت سفارش</a>
+    <div>
+
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% load  static %}
+{% load render_partial %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>جنگو پلاس | {% block title %}{% endblock title %}</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="{% static 'img/django+.png' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Font CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;900&amp;display=swap" rel="stylesheet">
+    <!-- Library CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}" crossorigin="anonymous">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="logo-spinner">
+            <img src="img/logo.png" alt="">
+        </div>
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+    <!-- End of Preloader -->
+    <!-- Header -->
+    {% render_partial "courses:navbar" %}
+    <!-- End Header -->
+    {% include 'shared/messages.html' %}
+    {% block content %}{% endblock content %}
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="top-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="block-widget">
+                            <div class="logo-footer">
+                                <img src="img/logo-footer.jpg" alt="">
+                            </div>
+                            <p class="mt-2 mb-3">مطالب گفته نشده رو اینجا پیدا کن! (جنگو پلاس)</p>
+                            <ul class="list-unstyled group-icon-contact">
+                                <li><i class="fas fa-envelope"></i> farhadggu@gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <div class="block-widget">
+                            <div class="widget-title">
+                                <h5>لینک های مفید</h5>
+                            </div>
+                            <ul class="widget_links list-unstyled mt-3">
+                                <li><a href="{% url 'courses:home' %}">صفحه اصلی</a>
+                                </li>
+                                <li><a href="{% url 'courses:courses-list' %}">همه دوره ها</a>
+                                </li>
+                                <li><a href="{% url 'cart:shop-cart' %}">سبد خرید</a>
+                                </li>
+                                <li><a href="{% url 'courses:contactus' %}">تماس با ما</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <div class="block-widget">
+                            <div class="widget-title">
+                                <h5>حساب کاربری</h5>
+                            </div>
+                            <ul class="widget_links list-unstyled mt-3">
+                                <li><a href="{% url 'account:login' %}">ورود به حساب کاربری</a>
+                                </li>
+                                <li><a href="{% url 'account:register' %}">ثبت نام</a>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="block-social mt-4">
+                            <div class="widget-title">
+                                <h5>شبکه اجتماعی</h5>
+                            </div>
+                            <div class="group-icon-social mt-3">
+                                <a href="https://t.me/Django_Plus"><i class="fab fa-telegram"></i></a>
+                                <a href="https://www.instagram.com/django.plus/"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer py-3">
+            <div class="container border-top pt-3">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="coppyright">© 1400 کلیه حقوق این سایت متعلق به جنگو پلاس است</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- Bootstrap JavaScript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <!-- Custom scripts  -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

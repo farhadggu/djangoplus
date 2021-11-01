@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}تغییر رمز عبور{% endblock title %}
+{% block content %}
+
+<div class="container">
+    <form method="post" class="base-form-resgister-now px-4 py-4">
+        {% csrf_token %}
+        <h3 class="mb-3">فراموشی رمز عبور</h3>
+            <div class="form-group">
+                <div>{{form.email|as_crispy_field}}</div>
+            </div>
+                
+            <button type="submit" class="btn btn-fill-primary mt-3 mb-3">ویرایش</button>
+    </form>
+</div>
+
+{% endblock content %}

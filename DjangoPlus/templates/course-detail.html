@@ -1,0 +1,160 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}دوره {{course.title}}{% endblock title %}
+{% block content %}
+
+    <!-- Content Page -->
+    <div class="wrapper-page">
+        <div class="content-page">
+            <!-- Courses Detail Section -->
+            <div class="courses-detail">
+                <div class="container">
+                    <div class="base-courses-detail">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="content-courses-detail">
+                                    <h2 class="font-weight-bold">{{course.title}}</h2>
+                                    <img src="{{course.image.url}}" class="img-fluid mt-4" alt="">
+                                    <h3 class="mt-5 mb-2">توضیحات دوره </h3>
+                                    <p>{{course.desc|striptags}}</p>
+                                    <h3 class="mt-5 mb-4">مطالب کلاس</h3>
+                                    <div class="courses-contents">
+                                        <div class="accordion courses-content-list" id="list-contents">
+                                            <div class="card">
+                                                {% if order.status == 'Completed' %}
+
+                                                    {% for episode in episode %}
+                                                    <div class="card-header">
+                                                        <h2 class="mb-0">
+                                                            <a href="{{episode.link}}" class="btn btn-link collapsed" style="font-size:16px; color:inherit;">
+                                                                <i class="fas fa-download ml-2"></i>
+                                                                <span class="ml-3">{{episode.time}}</span>
+                                                            {{episode.title}}
+                                                            
+                                                            </a>
+                                                        </h2>
+                                                    </div>
+                                                    {% endfor %}
+                                                {% else %}
+
+                                                {% for episode in episode %}
+                                                <div class="card-header">
+                                                    <h2 class="mb-0">
+                                                    {% if episode.free == True %}
+                                                        <a href="{{episode.link}}" class="btn btn-link collapsed" style="font-size:16px; color:inherit;">
+                                                            <i class="fas fa-download ml-2"></i>
+                                                            <span class="ml-3">{{episode.time}}</span>
+                                                           {{episode.title}}
+                                                            <span class="mr-3 badge badge-warning">رایگان</span>
+                                                        </a>
+                                                    {% else %}
+                                                        <p class="btn btn-link collapsed" style="font-size:16px; color:inherit;">
+                                                            <span class="ml-3">{{episode.time}}</span>
+                                                           {{episode.title}}
+                                                        </p>
+                                                    {% endif %}
+                                                    </h2>
+                                                </div>
+                                                {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    
+                               <h3 class="mb-3 mt-5"> نقد و بررسی دوره ها</h3>
+                               <div class="users-comment">
+                                   {% for comment in comment %}
+                                   <div class="media mt-5">
+                                      <img src="{% static 'img/download.png' %}" width=60px height=60px class="align-self-start ml-3" alt="...">
+                                      <div class="media-body">
+                                        <span class="name-comment">{{comment.user.username}}</span>
+                                        <p class="times-comment">{{comment.jcreated}}</p>
+                                        <p>{{comment.comment}}</p>
+                                      </div>
+                                    </div>
+                                    {% for reply in comment.replies.all %}
+                                    <div class="media child-comment border-top pt-4 my-4">
+                                      <img src="{% static 'img/user-male-icon.png' %}" width=60px height=60px class="align-self-start ml-3" alt="...">
+                                      <div class="media-body">
+                                        <span class="name-comment">{{reply.user.username}}</span>
+                                        <p class="times-comment">{{reply.jcreated}}</p>
+                                        <p>{{reply.comment}}</p>
+                                        
+                                      </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!-- Add Reply -->
+                                    <form method="post" action="{% url 'courses:reply' course.id comment.id %}" class="row mt-5 mr-4 pr-4">
+                                    {% csrf_token %}
+                                        <div class="form-group col-12">
+                                            {{reply_form.comment}}
+                                        </div>
+                                                
+                                        <div class="btn-comment">
+                                            <button type="submit" class="btn btn-fill-primary">پاسخ</button>
+                                        </div>
+                                    </form>
+                                    <!-- End Reply -->
+                                    {% endfor %}
+                               </div>
+                               <h3 class="mb-3 mt-5">ارسال نظرات</h3>
+                                <form method='post' action="{% url 'courses:comment' course.id %}">
+                                    {% csrf_token %}
+                                    <div class="write-comment mt-3">
+                                        
+                                        <div class="row">
+                                                <div class="col-lg-12">
+                                                    {{comment_form.comment}}
+                                                </div>
+                                            
+                                            <div class="col-lg-12">
+                                                <div class="btn-comment">
+                                                    <button type="submit" class="btn btn-fill-primary">ارسال</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+
+                                <div class="widget"> 
+                                    <div class="title-widget mb-3">
+                                        <h4>جزئیات دوره</h4>
+                                    </div>
+                                    <form method="post" action="{% url 'cart:addtoshapcart' course.id %}"  class="content-widget event-detail-widget">
+                                    {% csrf_token %}
+                                       <ul class="list-unstyled">
+                                            <li><i class="fas fa-calendar-alt"></i><b>تاریخ شروع: </b> {{course.jcreated}}</li>
+                                            <li><i class="fas fa-clock"></i><b>زمان دوره: </b>-------</li>
+                                            <li><i class="fas fa-user"></i><b>مدرس:</b> فرهاد قراگوزلو </li>
+                                            <li><i class="fas fa-envelope"></i><b> تعداد دانشجویان دوره: </b> {{course.sell}}</li>
+                                       </ul>
+                                       {% if order.status == 'Completed' %}
+                                       <a class="btn btn-fill-primary d-block">دوره خریداری شده!</a>
+                                       {% else %}
+                                        <button type="submit" class="btn btn-fill-primary d-block">افزودن به سبد خرید</button>
+                                       {% endif %}
+                                    </form>
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Courses Detail Section -->
+            <!-- End Newsletter Now Section -->
+        </div>
+        <!-- Button Back Top -->
+        <div class="back-top"> <a href="#top"><i class="fas fa-angle-up"></i></a> 
+        </div>
+        <!-- End Button Back Top -->
+    </div>
+    <!-- End Content Page -->
+
+{% endblock content %}

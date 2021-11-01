@@ -1,0 +1,53 @@
+{% extends 'shared/base.html' %}
+{% block title %}پروفایل کاربری{% endblock title %}
+{% block content %}
+
+    <div class="container mt-5">
+        <form method="post" class="base-form-resgister-now px-4 py-4">
+            {% csrf_token %}
+            <h3 class="mb-3">پروفایل کاربری</h3>
+            <div class="form-group">
+                {{form.first_name}}
+            </div>
+            <div class="form-group">
+                {{form.last_name}}
+            </div>
+            <button type="submit" class="btn btn-fill-primary mt-3 mb-3">ویرایش</button>
+        </form>
+
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3 class="text-center">دوره های خریداری شده</h3>
+
+                <div class="card mt-5">
+        
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col">دوره</th>
+                            <th scope="col">تصویر دوره</th>
+                            <th scope="col">قیمت</th>
+                            <th scope="col">مشاهده</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{item.course.title}}</td>
+                                <td><img src="{{item.course.image.url}}" width="150px" height="100px" /></td>
+                                <td>{{item.course.total_price}}</td>
+                                <td><a href="{{item.course.get_absolute_url}}" style="color:red"><strong>مشاهده دوره</strong></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        <div>
+    </div>
+                        
+
+{% endblock content %}

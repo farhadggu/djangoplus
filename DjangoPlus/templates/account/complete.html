@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+{% block title %}انجام شد{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container mt-5">
+    <form method="post" class="base-form-resgister-now px-4 py-4">
+        {% csrf_token %}
+        <h3 class="mb-3">رمز عبور با موفقیت تغییر یافت</h3>
+            <div class="form-group">
+                <p>رمز عبور با موفقیت تغییر یافت برای ادامه به بخش <a href="{% url 'account:login' %}">ورود<a>مراجعه کنید.</p>
+            </div>
+    </form>
+</div>
+
+{% endblock content %}

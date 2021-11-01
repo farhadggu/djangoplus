@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}ایمیل خود را بررسی کتید{% endblock title %}
+{% block content %}
+
+<div class="container mt-5">
+    <form method="post" class="mt-5 base-form-resgister-now px-4 py-4">
+        {% csrf_token %}
+        <h3 class="mb-3">ایمیل خود را بررسی کنید</h3>
+            <div class="form-group">
+                <p>لینک بازگردانی رمز عبور به ایمیل شما فرستاده شد لطفا ایمیل خود را بررسی کنید</p>
+            </div>
+    </form>
+</div>
+
+{% endblock content %}

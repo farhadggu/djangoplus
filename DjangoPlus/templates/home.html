@@ -1,0 +1,93 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}صفحه اصلی{% endblock title %}
+{% block content %}
+
+<!-- Content Page -->
+    <div class="wrapper-page">
+        <div class="content-page">
+            <!-- Banner Top Section -->
+            <div class="bg-top-default" style="background-image: url({% static '../static/img/coding-on-laptop_.jpg' %});">
+                <div class="container">
+                    <div class="row">                        
+                        <div class="col-lg-9">
+                            <div class="content-banner-top">
+                                <h1 class="font-weight-bold" style="color:black;">سایت + Django</h1>
+                                <h3 class="mt-1 mb-2" style="color:black; font-weight:bold;">یادگیری فوق پیشرفته و عملی و پروژه محور Django</h3>
+                                <p style="color:black; font-weight:bold;">مطالب گفته نشده ! نکته هایی که تو هیچ دوره ای گفته نمیشه! خوش اومدی به جنگو پلاس :)</p>
+                                <p style="color:black; font-weight:bold;">حفره های دوره های آموزشی رو همینجا پوشش میدیم و برطرف میکنیم.</p>
+                            </div>
+                            <div class="group-btn-top mt-4"> <a href="{% url 'courses:courses-list' %}" class="btn btn-fill-primary ml-2">دوره خود را پیدا کنید </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Banner Top Section -->
+            <!-- Featured Courses Section -->
+            <div class="featured-courses">
+                <div class="title-page text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>امروز</h4>
+                                <hr class="line-title">
+                                <h1>دوره های ویژه</h1> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-card-courses">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="owl-carousel owl-theme" id="carousel-card-courses-1">
+                                {% for course in courses %}
+                                    <div class="item">
+                                        <div class="card-courses">
+                                            <div class="images-card-courses">
+                                                <img src="{{course.image.url}}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="content-card-courses px-3 py-3">
+                                                <span class="name-courses">{{course.title}}</span>
+                                                <div class="price-courses mt-1 mb-2">
+                                                    <span class="price-main">{{course.total_price}} تومان</span>
+                                                    <span class="price-sale">{{course.price}} تومان</span> 
+                                                </div>
+                                                <span class="status1-courses">پیش فروش</span> 
+                                            </div>
+                                            <div class="card-courses-hover px-3 py-3 pr-0">
+                                                <span class="name-courses mt-4 mb-2">{{course.title}}</span>
+                                                <span class="status1-courses">پرفروش</span>
+                                                <span class="date-courses mt-2">
+                                                    <i class="fas fa-calendar-alt"></i>
+                                                    در {{course.jupdated}} به روز شد
+                                                </span>
+                                                <div class="info-times mt-2 mb-2">
+                                                    <span class="ml-2">
+                                                        <span class="price-main">{{course.total_price}} تومان</span>
+                                                        <span class="price-sale">{{course.price}} تومان</span> 
+                                                    </span>
+                                                </div>
+                                                <p class="ders-courses mb-3">{{course.desc|safe|truncatewords:10}}</p>
+                                                <a href="{{course.get_absolute_url}}" class="btn btn-fill-primary ml-3">ثبت دوره</a> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End item -->
+                                {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Featured Courses Section -->
+        </div>
+        <!-- Button Back Top -->
+            <div class="back-top"> <a href="#top"><i class="fas fa-angle-up"></i></a> </div>
+            <!-- End Button Back Top -->
+    </div>
+    <!-- End Content Page --> 
+
+{% endblock content %}

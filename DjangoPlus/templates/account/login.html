@@ -1,0 +1,62 @@
+{% extends 'shared/base.html' %}
+{% block title %}ورود به سایت{% endblock title %}
+{% block content %}
+
+<!-- Content Page -->
+    <div class="wrapper-page">
+        <div class="content-page">
+            <!-- Login Page Section -->
+            <div class="page-login">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 offset-lg-4">
+                            <form method="post" class="base-login shadow-sm">
+                                {% csrf_token %}
+                                <h3 class="mb-3">وارد حساب کاربری خود شوید!</h3>
+                                <div class="form-group">
+                                    {{form.email}}
+                                <div class="form-group mb-0">
+                                    {{form.password}}
+                                    <div class="login-footer">
+                                        <label class="check-box"> 
+                                            <span>مرا به خاطر بسپار</span>
+                                                <input type="checkbox" value=""> <span class="checkmark"></span> 
+                                            </label>
+                                    <span class="float-left"><a href="{% url 'account:reset-password' %}">رمز عبور را فراموش کرده اید؟</a></span>  
+                                    </div> 
+                                    <div class="btn-login d-flex justify-content-center ">
+                                        <button type="submit" class="btn btn-fill-primary d-block">ورود</button>
+                                    </div>
+                                    <hr>
+                                    <p>حساب کاربری ندارید؟ <a href="{% url 'account:register' %}">ثبت نام کنید</a></p>  
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                 <div class="area">
+                        <ul class="circles">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+            </div>
+            <!-- End Login Page Section -->
+
+            
+        </div>
+        <!-- Button Back Top -->
+        <div class="back-top"> <a href="#top"><i class="fas fa-angle-up"></i></a> 
+        </div>
+        <!-- End Button Back Top -->
+    </div>
+    <!-- End Content Page -->
+
+{% endblock content %}

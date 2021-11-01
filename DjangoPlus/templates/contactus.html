@@ -1,0 +1,88 @@
+{% extends 'shared/base.html' %}
+{% block title %}تماس با ما{% endblock title %}
+{% block content %}
+
+    <!-- Content Page -->
+    <div class="wrapper-page">
+        <div class="content-page">
+            <!-- Info Contact Section -->
+            <div class="base-info-contact">
+                <div class="title-page text-center">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>تماس با ما</h4>
+                                        <hr class="line-title">
+                                        <h1>اطلاعات تماس</h1> 
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                <div class="group-card-info">
+                    <div class="container">
+                 <div class="row">
+                     <div class="col-12">
+                         <div class="card-info-contact shadow text-center">
+                             <i class="fas fa-envelope"></i>
+                             <h3>آدرس ایمیل</h3>
+                             <p>farhadggu@gmail.com</p>
+                         </div>
+                     </div>
+                 </div>
+
+                </div>
+                </div>
+            </div>
+            <!-- End Info Contact Section -->
+            
+            <!-- Get In Touch Section -->
+            <div class="base-in-touch">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="content-in-touch">
+                                <h3 class="font-weight-bold text-center">ارسال تیکت</h3>
+                                <p class="my-3 text-center">مدت زمان پاسخ 24 ساعت طول میکشه. ایمیل خود را بررسی کنید ممنون از صبوری شما.</p>
+                                <form method="post">
+                                {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                            {{form.first_name}}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                            {{form.last_name}}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                            {{form.email}}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            {{form.message}}
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button type="submit" class="btn btn-fill-primary mt-3">ارسال</button>
+                                        </div>
+                                    </div>
+                                </form.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+             <!-- End Get In Touch Section -->
+                                        
+           
+        </div>
+        <!-- Button Back Top -->
+            <div class="back-top"> <a href="#top"><i class="fas fa-angle-up"></i></a> </div>
+            <!-- End Button Back Top -->
+    </div>
+    <!-- End Content Page -->
+
+{% endblock content %}

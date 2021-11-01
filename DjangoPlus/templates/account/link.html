@@ -1,0 +1,4 @@
+{% autoescape off %}
+    جهت بازگردانی رمز عبور بر روی لینک زیر کلیک کنید:
+    {{ protocol }}://{{ domain }}{% url 'account:confirm' uidb64=uid token=token %}
+{% endautoescape %}

@@ -1,0 +1,28 @@
+{% extends 'shared/base.html' %}
+{% block title %}سفارش تکمیل شد{% endblock title %}
+{% block content %}
+
+    <div class="container">
+            <!-- row -->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="order-summary clearfix">
+                        <div class="section-title">
+                            <h3 class="title">Order Completed</h3>
+                        </div>
+                        <hr>
+                        <h2>{{ user.first_name }} {{  user.last_name }} عزیز</h2>
+                        <hr>
+                        <h3>سفارش شما تکمیل شد</h3>
+                        <h3>کد پیگیری سفارش شما : {{ code }}</h3>
+                        <h3>تشکر از خرید شما برای مشاهده دوره به بخش <a href="{% url 'account:profile' request.user.id %}">پروفایل کاربری<a> بروید</h3>
+                        <hr>
+
+                    </div>
+
+                </div>
+            </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,86 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}همه دوره ها{% endblock title %}
+{% block content %}
+
+    <!-- Content Page -->
+    <div class="wrapper-page">
+        <div class="content-page">
+            <!-- List Courses Section -->
+            <div class="list-courses-section">
+                <div class="title-page text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>امکانات</h4>
+                                <hr class="line-title">
+                                <h1>دوره های جدید</h1> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gr-card-courses-list">
+                    <div class="container">
+                        <div class="row">
+                        {% for course in courses %}
+                            <div class="col-lg-6">
+                                <div class="card card-courses-list border-0 shadow-sm">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-5 col-lg-5">
+                                            <div class="images-card-courses">
+                                                <img src="{{course.image.url}}" class="card-img-top img-fluid" alt="...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-lg-7">
+                                            <div class="content-card-courses px-3 py-3">
+                                                <span class="name-courses">{{course.title}}</span>
+                                                <div class="price-courses mt-1 mb-2">
+                                                    <span class="price-main">{{course.total_price}} تومان</span>
+                                                    <span class="price-sale">{{course.price}} تومان</span> 
+                                                </div>
+                                                <span class="status1-courses">پرفروش</span>
+                                                <a href="{{course.get_absolute_url}}" class="btn btn-fill-secondary float-left">مشاهده دوره</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                            <div class="blog-pagination">
+                                <nav>
+                                    <ul class="pagination justify-content-center">
+                                    {% if courses.has_previous %}
+                                        <li class="page-item"> <a class="page-link" href="?page={{courses.previous_page_number}}&{{data}}"><i class="fas fa-angle-right"></i></a>
+                                        </li>
+                                    {% endif %}
+                                    {% if courses.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page={{courses.previous_page_number}}&{{data}}">{{courses.previous_page_number}}</a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="page-item {% if page_num == page_num %}active{% endif %}"><a class="page-link" href="?page={{ courses.number }}&{{ data }}">{{ courses.number }}</a>
+                                    </li>
+                                    {% if courses.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{courses.next_page_number}}&{{data}}">{{courses.next_page_number}}</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if courses.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{courses.next_page_number}}&{{data}}"><i class="fas fa-angle-left"></i></a>
+                                        </li>
+                                    {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Upcoming Events Section -->
+        </div>
+        <!-- Button Back Top -->
+        <div class="back-top"> <a href="#top"><i class="fas fa-angle-up"></i></a> 
+        </div>
+        <!-- End Button Back Top -->
+    </div>
+    <!-- End Content Page -->
+
+{% endblock content %}
